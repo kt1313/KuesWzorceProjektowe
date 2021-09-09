@@ -20,6 +20,12 @@ public class Main {
         Boolean.valueOf(isTrue);
 
         FamilyHouse familyHouse = FamilyHouse.from(house);
+
+        Logger.getInstance().logToConsole() {
+            //
+        }
+
     }
+
 }
 
