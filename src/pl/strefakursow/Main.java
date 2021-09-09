@@ -21,7 +21,7 @@ public class Main {
 
         FamilyHouse familyHouse = FamilyHouse.from(house);
 
-        Logger.getInstance().logToConsole() {
+        Logger.getInstance().logToConsole(); {
             //
         }
 
