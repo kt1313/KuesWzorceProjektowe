@@ -1,13 +1,14 @@
 package pl.strefakursow;
 
 import pl.strefakursow.models.FamilyHouse;
+import pl.strefakursow.observers.ObservableTempValue;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // write your code here
         creationPatterns();
 
@@ -18,32 +19,18 @@ public class Main {
         //NA PEWNO NIE ODPYTUJEMY obserwowanego
         //obiekt obserwowany informuje zaintersowane obiekty o zmianie
 
-        Observable observableValue=new Observable(){
-            @Override
-            public void notifyObservers(Object arg) {
-                super.setChanged();
-                super.notifyObservers(arg);
-            }
-        };
 
-        observableValue.addObserver(new Observer() {
-            @Override
-            public void update(Observable o, Object arg) {
-                System.out.println("1 "+arg.toString());
-            }
+        ObservableTempValue observableValue=new ObservableTempValue(){};
+
+        observableValue.addObserver((o, arg) -> System.out.println("1 "+arg.toString()));
+        observableValue.addObserver((o, arg) -> System.out.println("2 " + arg.toString()));
+while (true) {
+
+Thread.sleep(500);
+    observableValue.setValue((int)(observableValue.getOldTemp()+Math.random()*6-2));
 
 
-        });
-
-        observableValue.addObserver(new Observer() {
-            @Override
-            public void update(Observable o, Object arg) {
-                System.out.println("2 " + arg.toString());
-            }
-            });
-
-        observableValue.notifyObservers(54);
-
+}
 
 
 
