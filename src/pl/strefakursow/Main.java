@@ -31,6 +31,10 @@ public class Main {
         OfficialTrippingEmployee otMike =new OfficialTrippingEmployee(mike);
         otMike.goToClient();
 
+        System.out.println("zarobki przed: "+mike.getSalary());
+        System.out.println("zarobki po: "+new FreqBonus(new DeadlineBonus(new SpecialBonus(mike))).getSalary());
+
+
 
         return;
     }
