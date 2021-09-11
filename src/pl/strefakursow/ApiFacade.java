@@ -1,6 +1,8 @@
 package pl.strefakursow;
 
 import pl.strefakursow.adapter.OfficialTrippingEmployee;
+import pl.strefakursow.database.EmployeeCreator;
+import pl.strefakursow.database.EmployeeDatabase;
 import pl.strefakursow.decorator.DeadlineBonus;
 import pl.strefakursow.decorator.FreqBonus;
 import pl.strefakursow.decorator.Payable;
@@ -8,22 +10,16 @@ import pl.strefakursow.decorator.SpecialBonus;
 import pl.strefakursow.strategy.*;
 
 public class ApiFacade {
+
+    private EmployeeDatabase eDatabase = new EmployeeDatabase();
+    private EmployeeCreator employeeCreator=new EmployeeCreator();
+
     public Employee createDoctor(int i) {
-        Employee mike = new Employee();
+
+        Employee mike = employeeCreator.create(EmployeeCreator.BIKE_DOCTOR_SANDWICH);
         mike.setSalary(i);
 
-        mike.travelStrategy = new BikeTravelStrategy();
-        mike.jobStrategy = new DoctorJobStrategy();
-        mike.breakfastStartegy = new SandwichBreakfastStrategy();
-
-
-
-        OfficialTrippingEmployee otMike = new OfficialTrippingEmployee(mike);
-        otMike.goToClient();
-
-        System.out.println("zarobki przed: " + mike.getSalary());
-        System.out.println("zarobki po: " + new FreqBonus(new DeadlineBonus(new SpecialBonus(mike))).getSalary());
-
+        eDatabase.addEmployee(mike);
 
         return mike;
     }
@@ -47,11 +43,11 @@ public class ApiFacade {
         if (mike.travelStrategy instanceof BikeTravelStrategy) {
             employee = new FreqBonus(employee);
         }
-return employee.getSalary();
+        return employee.getSalary();
     }
 
     public void giveFreeHouseToBestFreqEmployee(Employee mike) {
-        System.out.println(mike.toString() + "dostaje dom " +   new House.HouseBuilder()
+        System.out.println(mike.toString() + "dostaje dom " + new House.HouseBuilder()
                 .setAdress("Za Zakretem 3")
                 .setDoorsNumber(3)
                 .setFloorsNumber(4)
