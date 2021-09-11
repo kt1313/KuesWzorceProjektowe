@@ -60,4 +60,14 @@ public class House {
     public Integer getWindowsNumber() {
         return windowsNumber;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "adress='" + adress + '\'' +
+                ", floorsNumber=" + floorsNumber +
+                ", doorsNumber=" + doorsNumber +
+                ", windowsNumber=" + windowsNumber +
+                '}';
+    }
 }

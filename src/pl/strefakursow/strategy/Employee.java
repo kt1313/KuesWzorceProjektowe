@@ -34,4 +34,14 @@ public class Employee implements TravelStrategy, JobStrategy, BreakfastStrategy,
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "salary=" + salary +
+                ", travelStrategy=" + travelStrategy +
+                ", jobStrategy=" + jobStrategy +
+                ", breakfastStartegy=" + breakfastStartegy +
+                '}';
+    }
 }
