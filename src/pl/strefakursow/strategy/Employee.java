@@ -1,6 +1,9 @@
 package pl.strefakursow.strategy;
 
 public class Employee implements TravelStrategy, JobStrategy, BreakfastStrategy {
+
+    private int salary;
+
     public TravelStrategy travelStrategy;
     public JobStrategy jobStrategy;
     public BreakfastStrategy breakfastStartegy;
@@ -19,5 +22,13 @@ public class Employee implements TravelStrategy, JobStrategy, BreakfastStrategy 
     public void goToWork() {
         travelStrategy.goToWork();
 
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 }

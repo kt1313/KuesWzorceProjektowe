@@ -16,6 +16,7 @@ public class Main {
         observerPattern();
 
         Employee mike = new Employee();
+        mike.setSalary(10000);
 
         mike.travelStrategy = new BikeTravelStrategy();
         mike.jobStrategy = new DoctorJobStrategy();
@@ -34,7 +35,15 @@ public class Main {
         System.out.println("zarobki przed: "+mike.getSalary());
         System.out.println("zarobki po: "+new FreqBonus(new DeadlineBonus(new SpecialBonus(mike))).getSalary());
 
+Payable employee = mike;
 
+if (mike.getSalary() > 8000){
+    employee=new SpecialBpnus(mike);
+}
+
+if (mike.travelStrategy instanceof BikeTravelStrategy){
+    employee=new FreqBonus(employee);
+}
 
         return;
     }
