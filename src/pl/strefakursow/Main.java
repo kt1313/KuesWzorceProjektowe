@@ -1,12 +1,13 @@
 package pl.strefakursow;
 
 import pl.strefakursow.adapter.OfficialTrippingEmployee;
+import pl.strefakursow.decorator.DeadlineBonus;
+import pl.strefakursow.decorator.FreqBonus;
+import pl.strefakursow.decorator.Payable;
+import pl.strefakursow.decorator.SpecialBonus;
 import pl.strefakursow.models.FamilyHouse;
 import pl.strefakursow.observers.ObservableTempValue;
 import pl.strefakursow.strategy.*;
-
-import java.util.Observable;
-import java.util.Observer;
 
 public class Main {
 
@@ -29,21 +30,22 @@ public class Main {
         mike.travelStrategy = new CarTravelStrategy();
         mike.goToWork();
 
-        OfficialTrippingEmployee otMike =new OfficialTrippingEmployee(mike);
+        OfficialTrippingEmployee otMike = new OfficialTrippingEmployee(mike);
         otMike.goToClient();
 
-        System.out.println("zarobki przed: "+mike.getSalary());
-        System.out.println("zarobki po: "+new FreqBonus(new DeadlineBonus(new SpecialBonus(mike))).getSalary());
+        System.out.println("zarobki przed: " + mike.getSalary());
+        System.out.println("zarobki po: " + new FreqBonus(new DeadlineBonus(new SpecialBonus(mike))).getSalary());
 
-Payable employee = mike;
+        Payable employee = mike;
 
-if (mike.getSalary() > 8000){
-    employee=new SpecialBpnus(mike);
-}
+        if (mike.getSalary() > 8000) {
+            employee = new SpecialBonus(mike);
+        }
 
-if (mike.travelStrategy instanceof BikeTravelStrategy){
-    employee=new FreqBonus(employee);
-}
+        if (mike.travelStrategy instanceof BikeTravelStrategy) {
+            employee = new FreqBonus(employee);
+        }
+        System.out.println("zarobki po: "+employee.getSalary());
 
         return;
     }

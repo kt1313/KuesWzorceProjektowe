@@ -1,6 +1,8 @@
 package pl.strefakursow.strategy;
 
-public class Employee implements TravelStrategy, JobStrategy, BreakfastStrategy {
+import pl.strefakursow.decorator.Payable;
+
+public class Employee implements TravelStrategy, JobStrategy, BreakfastStrategy, Payable {
 
     private int salary;
 
@@ -24,6 +26,7 @@ public class Employee implements TravelStrategy, JobStrategy, BreakfastStrategy 
 
     }
 
+    @Override
     public int getSalary() {
         return salary;
     }
