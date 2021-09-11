@@ -1,5 +1,6 @@
 package pl.strefakursow;
 
+import pl.strefakursow.adapter.OfficialTrippingEmployee;
 import pl.strefakursow.models.FamilyHouse;
 import pl.strefakursow.observers.ObservableTempValue;
 import pl.strefakursow.strategy.*;
@@ -26,6 +27,10 @@ public class Main {
 
         mike.travelStrategy = new CarTravelStrategy();
         mike.goToWork();
+
+        OfficialTrippingEmployee otMike =new OfficialTrippingEmployee(mike);
+        otMike.goToClient();
+
 
         return;
     }
